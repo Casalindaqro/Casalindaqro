@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Linda · Casa en renta en Querétaro</title>
+<meta name="description" content="Casa Linda: casa en renta en Santiago de Querétaro, cerca del centro. $6,000 al mes. Agua y luz no incluidas. Se aceptan niños.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --bg:#050505;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(232,207,140,.06);
+  --borde:rgba(232,207,140,.14);
+  --borde-fuerte:rgba(232,207,140,.4);
+  --oro:#d4af5a;
+  --oro-claro:#f0dca0;
+  --oro-oscuro:#8f6f27;
+  --texto:#f1ecdf;
+  --suave:#a8a291;
+  --radio:24px;
+  --display:'Sora',system-ui,sans-serif;
+  --sans:'Manrope',system-ui,sans-serif;
+  --grad:linear-gradient(120deg,#b8923c,#f0dca0 50%,#d4af5a);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--texto);font:400 1rem/1.7 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--oro-claro);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.oro{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:110px 0}
+.titulo{max-width:640px;margin-bottom:56px}
+.titulo h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-bottom:14px}
+.titulo p{color:var(--suave);font-size:1.08rem}
+.centro{text-align:center;margin-inline:auto}
+
+/* Fondo con luz */
+.luz{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 500px at 85% -5%,rgba(212,175,90,.2),transparent 60%),
+             radial-gradient(600px 500px at -5% 45%,rgba(212,175,90,.08),transparent 60%)}
+
+/* Navegación flotante */
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:30;width:min(1100px,calc(100% - 32px));
+  display:flex;justify-content:space-between;align-items:center;padding:10px 12px 10px 24px;
+  background:rgba(12,12,12,.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--borde);border-radius:999px}
+.logo{font:600 1.1rem var(--display)}
+.menu{display:flex;gap:28px;align-items:center;font-size:.92rem;color:var(--suave)}
+.menu a:not(.btn):hover{color:var(--oro-claro)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;border:1px solid var(--borde-fuerte);
+  color:var(--oro-claro);font:600 .95rem var(--sans);cursor:pointer;background:transparent;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{background:rgba(212,175,90,.12);transform:translateY(-2px)}
+.btn.lleno{background:var(--grad);color:#0a0a0a;border-color:transparent}
+.btn.lleno:hover{box-shadow:0 10px 34px rgba(212,175,90,.35);background:var(--grad)}
+.btn.chico{padding:10px 22px}
+
+/* Portada */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6.4vw,5.4rem);margin-bottom:24px}
+.hero p.sub{color:var(--suave);font-size:1.15rem;max-width:520px;margin-bottom:34px}
+.acciones{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:8px 16px;border:1px solid var(--borde);border-radius:999px;background:var(--panel);font-size:.88rem;color:var(--texto)}
+.chip::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--oro);margin-right:8px;vertical-align:middle}
+
+.tarjeta{position:relative;padding:40px 34px;border-radius:32px;border:1px solid var(--borde-fuerte);
+  background:linear-gradient(160deg,rgba(212,175,90,.12),rgba(255,255,255,.02) 55%);backdrop-filter:blur(10px);overflow:hidden}
+.tarjeta::after{content:"";position:absolute;width:260px;height:260px;right:-90px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(240,220,160,.28),transparent 70%)}
+.tarjeta small{color:var(--suave)}
+.monto{font:700 clamp(3.4rem,6vw,4.8rem)/1 var(--display);letter-spacing:-.04em;margin:6px 0 4px}
+.tarjeta ul{list-style:none;margin:26px 0 28px;border-top:1px solid var(--borde);padding-top:18px;position:relative;z-index:1}
+.tarjeta li{padding:7px 0;display:flex;gap:12px;font-size:.96rem}
+.tarjeta li::before{content:"✓";color:var(--oro);font-weight:700}
+.tarjeta li.no{color:var(--suave)}
+.tarjeta li.no::before{content:"✕";color:var(--suave)}
+.tarjeta .btn{width:100%;position:relative;z-index:1}
+
+/* Foto de portada */
+.hero{position:relative;isolation:isolate;--portada:url("https://drive.google.com/thumbnail?id=1T6Baa4CBy4vM8f1MAUYtAhhgLQvu8HiM&sz=w2400")}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,rgba(5,5,5,.93) 0%,rgba(5,5,5,.72) 55%,rgba(5,5,5,.5) 100%),
+             linear-gradient(180deg,rgba(5,5,5,.55) 0%,transparent 28%,transparent 70%,var(--bg) 100%),
+             var(--portada) center/cover no-repeat}
+
+/* Cifras */
+.cifras{padding:0 0 40px}
+.cifras .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cifra{padding:28px;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel);text-align:center}
+.cifra b{display:block;font:600 2.3rem var(--display);color:var(--oro-claro)}
+.cifra span{color:var(--suave);font-size:.92rem}
+
+/* Bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.celda{padding:34px;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel);transition:border-color .25s,transform .25s}
+.celda:hover{border-color:var(--borde-fuerte);transform:translateY(-4px)}
+.celda svg{width:30px;height:30px;stroke:var(--oro);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
+.celda h3{font-size:1.35rem;margin-bottom:8px}
+.celda p{color:var(--suave);font-size:.96rem}
+.c2{grid-column:span 2}.c3{grid-column:span 3}.c4{grid-column:span 4}
+.celda.dorada{background:linear-gradient(150deg,rgba(212,175,90,.2),rgba(212,175,90,.04));border-color:var(--borde-fuerte)}
+
+/* Galería */
+.galeria{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px 260px 280px 300px;gap:14px}
+.foto{position:relative;border-radius:var(--radio);overflow:hidden;border:1px solid var(--borde);
+  background:linear-gradient(135deg,#1a150b,#080808);display:flex;align-items:flex-end;padding:18px;font-size:.88rem;color:var(--suave)}
+.foto:first-child{grid-row:span 2}
+.foto::before{content:"Tu foto aquí";position:absolute;inset:0;display:grid;place-items:center;font:600 1.1rem var(--display);color:rgba(212,175,90,.45)}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.foto span{position:relative;z-index:1;padding:5px 12px;border-radius:999px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);color:var(--texto)}
+
+.foto .tag{position:absolute;top:16px;left:16px;z-index:1;padding:6px 16px;border-radius:999px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--borde-fuerte);color:var(--oro-claro);font:600 .88rem var(--display)}
+
+.foto.ancha{grid-column:span 2}
+.foto.completa{grid-column:1/-1}
+.foto.doble{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:0}
+.foto.doble::before{display:none}
+.foto.doble img{position:relative;inset:auto;width:100%;height:100%;min-height:0}
+
+/* Detalles */
+.detalles{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
+.detalles li{padding:12px 22px;border:1px solid var(--borde);border-radius:999px;background:var(--panel);transition:.2s}
+.detalles li:hover{border-color:var(--borde-fuerte);color:var(--oro-claro)}
+
+/* Pasos */
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:paso}
+.paso{counter-increment:paso;padding:30px;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel);position:relative}
+.paso::before{content:counter(paso);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--grad);color:#0a0a0a;font:700 1.1rem var(--display);margin-bottom:20px}
+.paso h3{font-size:1.2rem;margin-bottom:6px}
+.paso p{color:var(--suave);font-size:.94rem}
+.paso.clave{border-color:var(--borde-fuerte);background:linear-gradient(160deg,rgba(212,175,90,.14),rgba(255,255,255,.02))}
+.aviso{margin-top:20px;padding:26px 32px;border-radius:var(--radio);border:1px solid var(--borde-fuerte);background:var(--panel-2);text-align:center;font-size:1.08rem}
+.aviso strong{color:var(--oro-claro);font-weight:600}
+
+/* Reserva y WhatsApp */
+.mini{display:block;text-align:center;margin-top:14px;color:var(--suave);font-size:.9rem;position:relative;z-index:1}
+.mini a{color:var(--oro-claro);border-bottom:1px solid var(--borde-fuerte)}
+.ok{display:none;padding:16px 20px;border:1px solid var(--borde-fuerte);border-radius:16px;background:var(--panel-2);color:var(--oro-claro)}
+.ok.ver{display:block}
+.datos .btn{margin-top:6px}
+
+/* Ampliar fotos */
+.galeria .foto img{cursor:zoom-in;transition:transform .5s ease}
+.galeria .foto:hover img{transform:scale(1.04)}
+.lb{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:rgba(0,0,0,.94);padding:24px}
+.lb.abierto{display:flex}
+.lb img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:16px;border:1px solid var(--borde)}
+.lb .leyenda{color:var(--oro-claro);font:600 1rem var(--display)}
+.lb button{position:absolute;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--borde-fuerte);background:rgba(20,20,20,.8);color:var(--oro-claro);font-size:1.5rem;cursor:pointer;transition:background .2s}
+.lb button:hover{background:rgba(212,175,90,.25)}
+.lb .cerrar{top:20px;right:20px}
+.lb .ant{left:20px;top:50%;transform:translateY(-50%)}
+.lb .sig{right:20px;top:50%;transform:translateY(-50%)}
+
+/* Mapa */
+.mapa{margin-top:32px;overflow:hidden;border:1px solid var(--borde-fuerte);border-radius:32px;padding:56px 24px;text-align:center;
+  background:radial-gradient(circle at 50% 35%,rgba(212,175,90,.22),transparent 60%),
+             repeating-linear-gradient(0deg,rgba(212,175,90,.08) 0 1px,transparent 1px 48px),
+             repeating-linear-gradient(90deg,rgba(212,175,90,.08) 0 1px,transparent 1px 48px),#0a0a0a}
+.mapa svg{width:44px;height:44px;stroke:var(--oro);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.mapa h3{font-size:1.6rem;margin-bottom:6px}
+.mapa p{color:var(--suave);margin-bottom:26px}
+.mapa iframe{display:block;width:100%;height:380px;border:0;border-radius:20px;margin-top:28px}
+
+/* Botón grande de reserva */
+.reserva-box{display:grid;place-items:center;padding:72px 32px;border:1px solid var(--borde-fuerte);border-radius:32px;background:linear-gradient(160deg,rgba(212,175,90,.14),rgba(255,255,255,.02))}
+.btn.grande{width:100%;max-width:420px;padding:26px 40px;font:700 1.35rem var(--display);letter-spacing:.01em}
+
+/* Certificado */
+.cert{margin-top:16px;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center;padding:36px;border:1px solid var(--borde-fuerte);border-radius:var(--radio);background:linear-gradient(160deg,rgba(212,175,90,.12),rgba(255,255,255,.02))}
+.cert h3{font-size:1.7rem;margin-bottom:10px}
+.cert p{color:var(--suave)}
+.cert figure{margin:0}
+.cert img{display:block;width:100%;max-height:440px;object-fit:contain;background:#0a0a0a;border:1px solid var(--borde);border-radius:14px;cursor:zoom-in;transition:transform .4s}
+.cert img:hover{transform:scale(1.02)}
+
+/* Requisitos */
+.sellos.tres{grid-template-columns:repeat(3,1fr)}
+
+/* Confianza */
+.sellos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sello{padding:30px;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel)}
+.sello svg{width:28px;height:28px;stroke:var(--oro);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px}
+.sello h3{font-size:1.15rem;margin-bottom:6px}
+.sello p{color:var(--suave);font-size:.93rem}
+.sello.destacado{border-color:var(--borde-fuerte);background:linear-gradient(160deg,rgba(212,175,90,.16),rgba(255,255,255,.02))}
+
+/* Referencias */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ref{padding:32px;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel);display:flex;flex-direction:column;gap:22px}
+.ref::before{content:"\201C";font:700 3.4rem/.6 var(--display);color:var(--oro)}
+.ref p{color:var(--texto);font-size:1rem;flex:1}
+.ref .quien{display:flex;align-items:center;gap:14px;border-top:1px solid var(--borde);padding-top:18px}
+.ref .av{position:relative;overflow:hidden;flex:none;width:56px;height:56px;border-radius:50%;background:var(--grad);color:#0a0a0a;display:grid;place-items:center;font:700 1.1rem var(--display);box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--borde-fuerte)}
+.ref .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ref b{display:block;font:600 1rem var(--display)}
+.ref small{color:var(--suave)}
+.refs-pie{margin-top:20px;text-align:center;color:var(--suave)}
+.refs-pie a{color:var(--oro-claro);border-bottom:1px solid var(--borde-fuerte)}
+
+/* Preguntas */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:12px}
+details{border:1px solid var(--borde);border-radius:20px;background:var(--panel);transition:border-color .2s}
+details[open]{border-color:var(--borde-fuerte)}
+summary{cursor:pointer;list-style:none;padding:22px 26px;font:600 1.05rem var(--display);display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;color:var(--oro);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 26px 22px;color:var(--suave)}
+
+/* Condiciones + contacto */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.lista{list-style:none;border:1px solid var(--borde);border-radius:var(--radio);background:var(--panel);padding:8px 28px}
+.lista li{padding:16px 0;border-bottom:1px solid var(--borde);display:flex;justify-content:space-between;gap:16px}
+.lista li:last-child{border:0}
+.lista li span:first-child{color:var(--suave)}
+.lista li span:last-child{color:var(--oro-claro);text-align:right;font-weight:500}
+form{display:grid;gap:16px;padding:36px;border:1px solid var(--borde-fuerte);border-radius:32px;background:linear-gradient(160deg,rgba(212,175,90,.1),rgba(255,255,255,.02))}
+label{display:block;font-size:.88rem;color:var(--suave);margin-bottom:6px}
+input,select,textarea{width:100%;padding:14px 18px;background:rgba(0,0,0,.5);border:1px solid var(--borde);border-radius:16px;color:var(--texto);font:400 1rem var(--sans)}
+input:focus,select:focus,textarea:focus{border-color:var(--oro);outline:none}
+select option{background:#111}
+.datos p{color:var(--suave);margin-bottom:18px}
+.datos b{display:block;color:var(--oro-claro);font:600 1.15rem var(--display)}
+.nota{border-left:2px solid var(--oro);padding-left:16px;color:var(--texto)!important}
+.nota strong{color:var(--oro-claro);font-weight:600}
+
+footer{padding:36px 0;text-align:center;color:var(--suave);font-size:.88rem;border-top:1px solid var(--borde)}
+.wa{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.6),0 0 0 6px rgba(212,175,90,.15)}
+.wa svg{width:28px;height:28px;fill:#0a0a0a}
+
+/* Aparición suave al hacer scroll (solo si hay JavaScript) */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.ver{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero::before{background:linear-gradient(180deg,rgba(5,5,5,.78),rgba(5,5,5,.9) 70%,var(--bg)),var(--portada) center/cover no-repeat}
+  section{padding:72px 0}
+  .menu a:not(.btn){display:none}
+  .hero{padding-top:120px}
+  .hero .wrap,.cols{grid-template-columns:1fr}
+  .cifras .wrap,.pasos,.sellos{grid-template-columns:1fr 1fr}
+  .refs{grid-template-columns:1fr}
+  .sellos.tres{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .c2,.c3,.c4{grid-column:span 2}
+  .galeria{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:230px}
+  .galeria .foto,.galeria .foto:first-child{grid-column:auto;grid-row:auto}
+}
+@media(max-width:560px){
+  .cifras .wrap,.pasos,.sellos,.bento,.stats{grid-template-columns:1fr}
+  .c2,.c3,.c4{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+}
+
+/* ===== Refinamiento: más limpio, profesional y con movimiento ===== */
+:root{--radio:20px}
+section{padding:104px 0}
+.titulo{margin-bottom:48px}
+.titulo h2.oro{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--texto);position:relative;padding-bottom:18px}
+.titulo h2.oro::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--grad);transition:width .9s .25s cubic-bezier(.2,.7,.2,1)}
+.titulo.centro h2.oro::after{left:50%;transform:translateX(-50%)}
+.titulo.ver h2.oro::after{width:56px}
+html:not(.js) .titulo h2.oro::after{width:56px}
+.celda,.paso,.sello,.cifra,.lista,details{box-shadow:0 1px 0 rgba(255,255,255,.03) inset}
+
+/* Progreso de lectura y barra de navegación */
+.progreso{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:60}
+nav{transition:background .3s,box-shadow .3s,padding .3s,top .3s}
+nav.scrolled{background:rgba(8,8,8,.92);box-shadow:0 12px 40px rgba(0,0,0,.55);top:10px}
+
+/* Portada con movimiento */
+.hero{overflow:hidden}
+.hero::before{animation:zoom 26s ease-in-out infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.1)}}
+@keyframes subir{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.hero h1{animation:subir .9s .1s both}
+.hero .sub{animation:subir .9s .25s both}
+.hero .acciones{animation:subir .9s .4s both}
+.hero .tarjeta{animation:subir 1s .5s both}
+.hero h1.oro,.monto.oro{background:linear-gradient(110deg,#b8923c 0%,#f0dca0 25%,#d4af5a 50%,#f0dca0 75%,#b8923c 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:brillo 8s linear infinite}
+.hero h1.oro{animation:subir .9s .1s both,brillo 8s linear infinite}
+@keyframes brillo{to{background-position:200% 0}}
+.luz{animation:deriva 20s ease-in-out infinite alternate}
+@keyframes deriva{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-2%,2%,0) scale(1.08)}}
+
+/* Botones con destello */
+.btn.lleno{position:relative;overflow:hidden}
+.btn.lleno::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .8s}
+.btn.lleno:hover::after{left:150%}
+
+/* Aparición escalonada */
+.js .rv{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 90ms)}
+.js .galeria.rv{opacity:1;transform:none}
+.js .galeria .foto{opacity:0;transform:scale(.94);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 90ms)}
+.js .galeria.ver .foto{opacity:1;transform:none}
+.celda svg,.sello svg{transition:transform .4s}
+.celda:hover svg,.sello:hover svg{transform:translateY(-4px) scale(1.08)}
+.paso{transition:transform .3s,border-color .3s}
+.paso:hover{transform:translateY(-4px);border-color:var(--borde-fuerte)}
+.sello{transition:transform .3s,border-color .3s}
+.sello:hover{transform:translateY(-4px);border-color:var(--borde-fuerte)}
+.cifra{transition:transform .3s,border-color .3s}
+.cifra:hover{transform:translateY(-3px);border-color:var(--borde-fuerte)}
+
+/* WhatsApp con pulso */
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--oro);animation:pulso 2.6s ease-out infinite}
+@keyframes pulso{from{transform:scale(1);opacity:.7}to{transform:scale(1.7);opacity:0}}
+
+/* Pie de página */
+footer{padding:56px 0 28px;border-top:1px solid var(--borde);text-align:left;color:var(--suave)}
+.pie{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start;padding-bottom:32px}
+.pie .logo{font:600 1.3rem var(--display)}
+.pie p{margin-top:8px;font-size:.95rem}
+.pie-links{position:static;transform:none;width:auto;display:flex;gap:24px;flex-wrap:wrap;padding:0;background:none;border:0;border-radius:0;backdrop-filter:none;font-size:.92rem}
+.pie-links a:hover{color:var(--oro-claro)}
+footer .copy{margin:0;padding-top:24px;border-top:1px solid var(--borde);text-align:center;font-size:.85rem}
+
+@media(max-width:900px){section{padding:72px 0}.cert{grid-template-columns:1fr;padding:24px}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .galeria .foto{opacity:1;transform:none}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progreso" id="progreso"></div>
+<div class="luz"></div>
+
+<nav>
+  <a href="#inicio" class="logo oro">Casa Linda</a>
+  <div class="menu">
+    <a href="#incluye">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#reservar">Reservar</a>
+    <a href="#requisitos">Requisitos</a>
+    <a href="#referencias">Referencias</a>
+    <a href="#faq">Preguntas</a>
+    <a href="https://casalindareserva.wordpress.com/" class="btn lleno chico" target="_blank" rel="noopener">Reservar</a>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <h1 class="oro">Tu próximo hogar en Querétaro</h1>
+      <p class="sub">Casa Linda: zona tranquila y segura, cerca del centro de la ciudad. Agua y luz no incluidas. Se aceptan niños.</p>
+      <div class="acciones">
+        <a href="#contacto" class="btn lleno">Reservar</a>
+        <a href="#reservar" class="btn">Cómo funciona</a>
+      </div>
+    </div>
+    <aside class="tarjeta" aria-label="Precio de renta">
+      <small>Renta mensual</small>
+      <div class="monto oro">$6,000</div>
+      <small>pesos mexicanos al mes</small>
+      <ul>
+        <li class="no">Agua y luz no incluidas</li>
+        <li>Se aceptan niños</li>
+        <li class="no">Internet (wifi) no incluido</li>
+        <li>Reserva de $500, con reembolso del 100% si cancelas</li>
+        <li>Depósito de $3,000 con una semana de tolerancia</li>
+      </ul>
+      <a href="#contacto" class="btn lleno">Reservar</a>
+      <span class="mini">¿Dudas? <a class="js-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></span>
+    </aside>
+  </div>
+</header>
+
+<div class="cifras">
+  <div class="wrap">
+    <div class="cifra rv"><b>3</b><span>Recámaras</span></div>
+    <div class="cifra rv"><b>2</b><span>Baños completos</span></div>
+    <div class="cifra rv"><b>Cerca</b><span>Del centro</span></div>
+    <div class="cifra rv"><b>1</b><span>Vehículo en estacionamiento</span></div>
+  </div>
+</div>
+
+<section id="incluye">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Servicios de la casa</h2>
+      <p>El agua, la luz y el internet no están incluidos en la renta.</p>
+    </div>
+    <div class="bento">
+      <div class="celda dorada c4 rv">
+        <svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+        <h3>Agua y luz no incluidas</h3>
+        <p>La renta de $6,000 al mes no incluye los servicios de agua y luz, que se pagan por separado.</p>
+      </div>
+      <div class="celda c2 rv">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1"/><circle cx="18" cy="11" r="2"/><path d="M15.500 20v-.500a3.500 3.500 0 0 1 6 0v.500"/></svg>
+        <h3>Niños</h3>
+        <p>Se aceptan niños en la casa.</p>
+      </div>
+      <div class="celda c2 rv">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.500 15.500a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg>
+        <h3>Wifi</h3>
+        <p>No está incluido. Contratas tu proveedor favorito.</p>
+      </div>
+      <div class="celda c4 rv">
+        <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
+        <h3>Reserva con $500</h3>
+        <p>Primero presionas Reservar y recibes tu contrato digital. Cuando lo hayas leído, envías los $500 de tu apartado, que se descuentan de tu primera renta. Si cancelas, te devolvemos el 100%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Conoce la casa</h2>
+    </div>
+    <!-- Fotos desde Google Drive (compartidas con "Cualquier persona con el enlace"). Para que nunca fallen, súbelas a tu propio hosting y cambia cada src. -->
+    <div class="galeria rv">
+      <div class="foto"><img src="https://drive.google.com/thumbnail?id=1-LxG15cDaKlogjkTUvCGRkUcD3NJEldf&sz=w1600" alt="Fachada de Casa Linda" loading="lazy"><span class="tag">Fachada</span></div>
+      <div class="foto doble">
+        <img src="https://drive.google.com/thumbnail?id=1gBdWsNBgmhOQ6AZ0NXfclxlATJPF49TA&sz=w1600" alt="Interior de Casa Linda, vista 1" loading="lazy">
+        <img src="https://drive.google.com/thumbnail?id=1xrbFVurAYXZ4DbY5LdqqXs1hJlvvk_T5&sz=w1600" alt="Interior de Casa Linda, vista 2" loading="lazy">
+        <span class="tag">Interior</span>
+      </div>
+      <div class="foto ancha"><img src="https://drive.google.com/thumbnail?id=1TLTIXriEayDfgFXPEYRIvPdod035R1zq&sz=w1600" alt="Zona de cocina de Casa Linda" loading="lazy"><span class="tag">Zona de cocina</span></div>
+      <div class="foto"><img src="https://drive.google.com/thumbnail?id=17RLxWW6iv_ZwmAKORnw47nFysRqQnUSW&sz=w1600" alt="Cuarto 1 de Casa Linda" loading="lazy"><span class="tag">Cuarto 1</span></div>
+      <div class="foto"><img src="https://drive.google.com/thumbnail?id=12D_6N24hUf0_eqz1CqoPdhCAYzA20c80&sz=w1600" alt="Cuarto 2 de Casa Linda" loading="lazy"><span class="tag">Cuarto 2</span></div>
+      <div class="foto"><img src="https://drive.google.com/thumbnail?id=1Impy2DmOgaI2tDLm4A6KnX8RGdnZTIGD&sz=w1600" alt="Cuarto 3 de Casa Linda" loading="lazy"><span class="tag">Cuarto 3</span></div>
+      <div class="foto"><img src="https://drive.google.com/thumbnail?id=1FMFSw18nD6XB3UFTY9oVcX9el0Bo4Z5c&sz=w1600" alt="Baño 1 de Casa Linda" loading="lazy"><span class="tag">Baño 1</span></div>
+      <div class="foto ancha"><img src="https://drive.google.com/thumbnail?id=1FUQ1UVg8GYChLwKkK8R6kmWBLYlI8mwR&sz=w1600" alt="Baño 2 de Casa Linda" loading="lazy"><span class="tag">Baño 2</span></div>
+      <div class="foto completa"><img src="https://drive.google.com/thumbnail?id=1w9E4PH_cr1F7cM-DMRYb7ef38O6KTT4F&sz=w1600" alt="Cochera de Casa Linda" loading="lazy"><span class="tag">Cochera</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="detalles" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Detalles de la casa</h2>
+    </div>
+    <ul class="detalles rv">
+      <li>3 recámaras, todas con clóset</li>
+      <li>Recámara principal con baño completo</li>
+      <li>Sala y comedor</li>
+      <li>Cocina</li>
+      <li>2 baños completos</li>
+      <li>Estacionamiento para 1 vehículo</li>
+      <li>Zona tranquila y segura</li>
+      <li>Contrato digital y legal</li>
+    </ul>
+  </div>
+</section>
+
+<section id="ubicacion" style="padding-top:0">
+  <div class="wrap cols">
+    <div class="rv">
+      <div class="titulo" style="margin-bottom:0">
+        <h2 class="oro">Excelente ubicación</h2>
+        <p>En Santiago de Querétaro, en una zona tranquila y segura, con todo cerca y salida rápida a la autopista.</p>
+      </div>
+    </div>
+    <ul class="lista rv">
+      <li><span>Centro de la ciudad</span><span>5 min</span></li>
+      <li><span>Estadio Corregidora</span><span>5 min</span></li>
+      <li><span>Soriana y Home Depot</span><span>3 min</span></li>
+      <li><span>Autopista Querétaro–México</span><span>3 min</span></li>
+      <li><span>Central de autobuses</span><span>10 min</span></li>
+    </ul>
+  </div>
+  <div class="wrap">
+    <div class="mapa rv">
+      <svg viewBox="0 0 24 24"><path d="M12 21s7-6.100 7-11.500A7 7 0 0 0 5 9.500C5 14.900 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
+      <h3>Ubicación exacta</h3>
+      <p>Santiago de Querétaro, Qro. Abre el mapa y llega directo a la casa.</p>
+      <a class="btn lleno" href="https://maps.app.goo.gl/gQgiSDdHWhpJGGBT8" target="_blank" rel="noopener">Abrir en Google Maps</a>
+      <!-- Para mostrar el mapa dentro de la página: en Google Maps toca Compartir > Insertar un mapa,
+           copia el código <iframe ...> y pégalo aquí debajo. -->
+    </div>
+  </div>
+</section>
+
+<section id="reservar" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Cómo reservar</h2>
+      <p>Cuatro pasos claros, de tu contrato a las llaves.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso rv"><h3>Presiona Reservar</h3><p>Presiona el botón y te hacemos llegar tu contrato, que es digital y legal.</p></div>
+      <div class="paso clave rv"><h3>Léelo y envía $500</h3><p>Una vez que lo leas y te llegue, envías los $500 pesos mexicanos de tu apartado.</p></div>
+      <div class="paso clave rv"><h3>Acude a las instalaciones</h3><p>Con tu reserva hecha, acudes y pagas la renta: $5,500, porque ya cuenta tu apartado.</p></div>
+      <div class="paso rv"><h3>Recibe las llaves</h3><p>Firmas tu contrato, entregas una copia o foto de tu INE y el depósito de $3,000 (con una semana de tolerancia).</p></div>
+    </div>
+    <p class="aviso rv">Primero presiona Reservar y recibe tu <strong>contrato digital y legal</strong>. Cuando lo leas, envía tu <strong>apartado de $500</strong> y acude a las instalaciones a pagar <strong>$5,500</strong> de renta, porque ya cuenta tu apartado. Si cancelas, te devolvemos el <strong>100% del apartado</strong>.</p>
+  </div>
+</section>
+
+<section id="requisitos" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Requisitos para rentar</h2>
+      <p>Tres requisitos sencillos para entrar a tu nuevo hogar.</p>
+    </div>
+    <div class="sellos tres">
+      <div class="sello destacado rv">
+        <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.500" r="2.500"/><path d="M6 9.500v.01M18 15.500v.01"/></svg>
+        <h3>Depósito de $3,000</h3><p>Depósito de $3,000 pesos mexicanos. Damos una semana de tolerancia para entregarlo.</p>
+      </div>
+      <div class="sello rv">
+        <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 17c1.500-2 2.500 1 4-1s1.500-1 2-1"/></svg>
+        <h3>Firma del contrato</h3><p>Necesitamos tu firma en el contrato de arrendamiento. Es digital y legal, y te llega antes de apartar para que lo leas.</p>
+      </div>
+      <div class="sello rv">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M5.500 16c.5-1.500 2-2.500 3.500-2.500s3 1 3.500 2.500M15 10h4M15 14h3"/></svg>
+        <h3>Copia o foto de tu INE</h3><p>Puede ser una copia o una foto de tu credencial INE vigente, para integrar tu contrato.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="confianza" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Renta con confianza</h2>
+      <p>Años de experiencia y condiciones claras desde el inicio.</p>
+    </div>
+    <div class="sellos">
+      <div class="sello destacado rv">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.700L3 8M3 3v5h5"/></svg>
+        <h3>Reembolso del 100%</h3><p>Si cancelas, te regresamos íntegro el monto de tu reserva de $500.</p>
+      </div>
+      <div class="sello rv">
+        <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Empresa segura</h3><p>Somos una empresa totalmente segura, con años de experiencia en renta de inmuebles.</p>
+      </div>
+      <div class="sello rv">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.500 2.700-6 6-6s6 2.500 6 6M16 11a3 3 0 1 0 0-6M21 20c0-2.500-1.500-4.500-3.500-5.500"/></svg>
+        <h3>Contamos con referencias</h3><p>Lee las referencias de clientes anteriores o pídenos contacto con ellos antes de reservar.</p>
+      </div>
+      <div class="sello rv">
+        <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>
+        <h3>Contrato digital y legal</h3><p>Condiciones claras en un contrato de arrendamiento digital y legal, sin costos ocultos.</p>
+      </div>
+    </div>
+    <div class="cert rv">
+      <div>
+        <h3>Certificado inmobiliario</h3>
+        <p>Contamos con certificado inmobiliario. Toca la imagen para verla en grande.</p>
+      </div>
+      <figure>
+        <img src="https://drive.google.com/thumbnail?id=18_qqDRAXIhXMYzectn8Ros77mxbvWcd4&sz=w1600" alt="Certificado inmobiliario" loading="lazy">
+        <figcaption class="sr" hidden>Certificado inmobiliario</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="referencias" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo rv">
+      <h2 class="oro">Referencias de clientes anteriores</h2>
+      <p>Lo que dicen quienes ya rentaron con nosotros.</p>
+    </div>
+    <!-- Reemplaza cada tarjeta con una referencia real: foto, nombre y comentario.
+         Para la foto de perfil, agrega dentro de <span class="av"> esto:
+         <img src="ENLACE_DE_LA_FOTO" alt="Nombre del cliente" onerror="this.remove()">
+         Si no hay foto, se muestra la inicial del nombre.
+         Copia y pega un bloque <div class="ref rv"> para agregar más. -->
+    <div class="refs">
+      <div class="ref rv">
+        <p>Es una casa cómoda, me gustó mucho rentarla aunque no fue por mucho tiempo, pero la recomiendo. Además está cerca de la escuela de mis chiquillos.</p>
+        <div class="quien"><span class="av">I<img src="https://drive.google.com/thumbnail?id=1oJhp7W2_s7HvYuHCbVUeo8YRbE1LqfoI&sz=w400" alt="Israel Medina" loading="lazy" onerror="this.remove()"></span><div><b>Israel Medina</b><small>Inquilino anterior</small></div></div>
+      </div>
+      <div class="ref rv">
+        <p>Fue mi hogar por un tiempo. Fue una lástima que tuvimos que dejarla por cuestión de trabajo de mi pareja, pero la casa está muy bonita.</p>
+        <div class="quien"><span class="av">G<img src="https://drive.google.com/thumbnail?id=1ZL5f4PFECt45Lc0N5X2dtwwB8bq05_al&sz=w400" alt="Guadalupe Guerrero" loading="lazy" onerror="this.remove()"></span><div><b>Guadalupe Guerrero</b><small>Inquilina anterior</small></div></div>
+      </div>
+      <div class="ref rv">
+        <p>Es una bonita casa, te queda cerca todo y está muy tranquila. Con las 3 habitaciones es más que suficiente. La renté por 1 año y me gustó mucho, pero encontré otra más cerca de mis papás y por eso me mudé.</p>
+        <div class="quien"><span class="av">R<img src="https://drive.google.com/thumbnail?id=1RJZxOAca7JoNoMOSd2LF87aOHawKRI1e&sz=w400" alt="Raúl Bustamante" loading="lazy" onerror="this.remove()"></span><div><b>Raúl Bustamante</b><small>Inquilino anterior</small></div></div>
+      </div>
+    </div>
+    <p class="refs-pie rv">¿Quieres hablar con un inquilino anterior? <a href="#contacto">Pídenos sus datos de contacto</a>.</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="titulo centro rv">
+      <h2 class="oro">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq rv">
+      <details><summary>¿Qué incluye la renta de $6,000?</summary><p>La renta no incluye agua, luz ni internet (wifi); esos servicios se pagan por separado.</p></details>
+      <details><summary>¿Dónde está la casa?</summary><p>En Santiago de Querétaro, cerca del centro, en una zona tranquila y segura. Puedes ver la ubicación exacta en la sección de ubicación y abrirla en Google Maps.</p></details>
+      <details><summary>¿Qué requisitos necesito para rentar?</summary><p>Un depósito de $3,000 pesos mexicanos (con una semana de tolerancia), tu firma en el contrato y una copia o foto de tu INE.</p></details>
+      <details><summary>¿Se aceptan niños?</summary><p>Sí, se aceptan niños. Cuéntanos cuántos serían al hacer tu reserva.</p></details>
+      <details><summary>¿Cómo reservo la casa?</summary><p>Primero presionas Reservar y te hacemos llegar tu contrato digital. Cuando lo hayas leído, envías los $500 de tu apartado. Ya hecha tu reserva, acudes a las instalaciones y pagas $5,500 de renta.</p></details>
+      <details><summary>¿Por qué pago $5,500 al acudir?</summary><p>La renta es de $6,000 al mes. Como ya enviaste $500 de apartado, al acudir pagas la diferencia: $5,500.</p></details>
+      <details><summary>¿Es legal el contrato?</summary><p>Sí. El contrato es digital y legal, y te lo hacemos llegar antes de que envíes tu apartado.</p></details>
+      <details><summary>¿Qué pasa si cancelo?</summary><p>Si cancelas, te devolvemos el 100% del monto de la reserva.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="condiciones" style="padding-top:0">
+  <div class="wrap cols">
+    <div class="rv">
+      <div class="titulo" style="margin-bottom:0">
+        <h2 class="oro">Condiciones de renta</h2>
+        <p>Todo claro desde el inicio. Presiona Reservar, recibe tu contrato digital y legal y léelo con calma. Si tienes dudas, escríbenos por WhatsApp.</p>
+      </div>
+    </div>
+    <ul class="lista rv">
+      <li><span>Renta mensual</span><span>$6,000 MXN</span></li>
+      <li><span>Agua</span><span>No incluida</span></li>
+      <li><span>Luz</span><span>No incluida</span></li>
+      <li><span>Internet (wifi)</span><span>No incluido</span></li>
+      <li><span>Niños</span><span>Se aceptan</span></li>
+      <li><span>Contrato</span><span>Digital y legal; se envía antes del apartado</span></li>
+      <li><span>Reserva de la casa</span><span>$500 MXN, después de leer tu contrato</span></li>
+      <li><span>Primer pago de renta</span><span>$5,500 MXN, ya cuenta tu apartado</span></li>
+      <li><span>Depósito</span><span>$3,000 MXN, con una semana de tolerancia</span></li>
+      <li><span>Requisitos</span><span>Firma del contrato y copia o foto de INE</span></li>
+      <li><span>Cancelación</span><span>Reembolso del 100% de la reserva</span></li>
+      <li><span>Ubicación</span><span>Santiago de Querétaro, Qro.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto" style="padding-top:0">
+  <div class="wrap cols">
+    <div class="datos rv">
+      <div class="titulo" style="margin-bottom:24px">
+        <h2 class="oro">Reserva tu casa</h2>
+        <p>Presiona Reservar y te hacemos llegar tu contrato digital.</p>
+      </div>
+      <p class="nota">Primero te hacemos llegar el <strong>contrato digital y legal</strong>. Cuando lo hayas leído, envías tu <strong>apartado de $500</strong>. Después acudes a las instalaciones y pagas <strong>$5,500</strong> de renta. Si cancelas, se te devuelve el 100% del apartado.</p>
+      <a class="btn js-wa" href="#" target="_blank" rel="noopener" style="margin-bottom:28px">Contactar por WhatsApp</a>
+      <p><b>Correo</b><a href="mailto:casalinda@inmoboqro.com" style="color:var(--texto);border-bottom:1px solid var(--borde-fuerte)">casalinda@inmoboqro.com</a></p>
+      <p><b>Ubicación</b><a href="https://maps.app.goo.gl/gQgiSDdHWhpJGGBT8" target="_blank" rel="noopener" style="color:var(--texto);border-bottom:1px solid var(--borde-fuerte)">Ver en Google Maps</a></p>
+    </div>
+    <div class="reserva-box rv">
+      <a class="btn lleno grande" href="https://casalindareserva.wordpress.com/" target="_blank" rel="noopener">Reservar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap pie">
+    <div>
+      <a class="logo oro" href="#inicio">Casa Linda</a>
+      <p>Casa en renta en Santiago de Querétaro.</p>
+    </div>
+    <div class="pie-links">
+      <a href="#incluye">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#faq">Preguntas</a>
+    </div>
+  </div>
+  <p class="copy">© 2026 Casa Linda. Todos los derechos reservados.</p>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="cerrar" id="lb-cerrar" aria-label="Cerrar">&times;</button>
+  <button class="ant" id="lb-ant" aria-label="Foto anterior">&#8249;</button>
+  <img id="lb-img" alt="">
+  <div class="leyenda" id="lb-txt"></div>
+  <button class="sig" id="lb-sig" aria-label="Foto siguiente">&#8250;</button>
+</div>
+
+<a class="wa" id="wa" href="#" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 14c-.2.6-1.3 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.300 1.700 2.100 1.200 1 2.100 1.300 2.400 1.500.3.1.5.1.6-.1l.9-1.100c.2-.3.4-.2.7-.1l1.900.9c.3.1.5.2.5.3.1.2.1.8-.1 1.400z"/></svg>
+</a>
+
+<script>
+  // 1) Número de WhatsApp para más información (código de país + lada + número, sin signos)
+  const NUMERO = "524427049929";
+
+  const waLink = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent("Hola, quiero más información sobre la casa en renta en Querétaro.");
+  document.querySelectorAll(".js-wa").forEach(function(a){ a.href = waLink; });
+  document.getElementById("wa").href = waLink;
+
+  // Ampliar fotos (galería y certificado)
+  (function(){
+    let fotos = [];
+    const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbTxt = document.getElementById("lb-txt");
+    const ant = document.getElementById("lb-ant"), sig = document.getElementById("lb-sig");
+    let actual = 0, xIni = null;
+    function mostrar(i){
+      actual = (i + fotos.length) % fotos.length;
+      const f = fotos[actual], tag = f.parentElement.querySelector(".tag, figcaption");
+      lbImg.src = f.src.replace("sz=w1600","sz=w2400");
+      lbImg.alt = f.alt;
+      lbTxt.textContent = tag ? tag.textContent : "";
+    }
+    function abrir(img){
+      fotos = Array.prototype.slice.call(img.closest(".galeria, .cert").querySelectorAll("img"));
+      const varias = fotos.length > 1;
+      ant.style.display = sig.style.display = varias ? "" : "none";
+      mostrar(fotos.indexOf(img)); lb.classList.add("abierto"); document.body.style.overflow = "hidden"; document.getElementById("lb-cerrar").focus();
+    }
+    function cerrar(){ lb.classList.remove("abierto"); document.body.style.overflow = ""; lbImg.removeAttribute("src"); }
+    document.querySelectorAll(".galeria .foto img, .cert img").forEach(function(f){
+      f.tabIndex = 0; f.setAttribute("role","button");
+      f.addEventListener("click", function(){ abrir(f); });
+      f.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(f); } });
+    });
+    document.getElementById("lb-cerrar").addEventListener("click", cerrar);
+    ant.addEventListener("click", function(){ mostrar(actual-1); });
+    sig.addEventListener("click", function(){ mostrar(actual+1); });
+    lb.addEventListener("click", function(e){ if(e.target===lb) cerrar(); });
+    document.addEventListener("keydown", function(e){
+      if(!lb.classList.contains("abierto")) return;
+      if(e.key==="Escape") cerrar();
+      if(fotos.length>1 && e.key==="ArrowLeft") mostrar(actual-1);
+      if(fotos.length>1 && e.key==="ArrowRight") mostrar(actual+1);
+    });
+    lb.addEventListener("touchstart", function(e){ xIni = e.touches[0].clientX; }, {passive:true});
+    lb.addEventListener("touchend", function(e){
+      if(xIni===null || fotos.length<2) { xIni = null; return; }
+      const d = e.changedTouches[0].clientX - xIni; xIni = null;
+      if(Math.abs(d) > 50) mostrar(actual + (d<0 ? 1 : -1));
+    });
+  })();
+
+  // Aparición suave al hacer scroll
+  const io = new IntersectionObserver(function(es){
+    es.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add("ver"); io.unobserve(x.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+
+  // Barra de progreso y barra de navegación al hacer scroll
+  (function(){
+    const barra = document.getElementById("progreso"), nav = document.querySelector("nav");
+    function alScroll(){
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      barra.style.transform = "scaleX(" + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ")";
+      nav.classList.toggle("scrolled", window.scrollY > 40);
+    }
+    window.addEventListener("scroll", alScroll, {passive:true}); alScroll();
+    // Aparición escalonada dentro de cuadrículas
+    document.querySelectorAll(".bento,.pasos,.sellos,.stats,.cifras .wrap,.galeria,.refs,.detalles,.faq,.lista").forEach(function(g){
+      Array.prototype.slice.call(g.children).forEach(function(h,i){ h.style.setProperty("--i", Math.min(i,6)); });
+    });
+  })();
+</script>
+</body>
+</html>
